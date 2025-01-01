@@ -1,34 +1,55 @@
 'use client'
 
-import { useState } from 'react'
-import { Box, List, ListItem, ListItemText, Typography } from '@mui/material'
+import { useState, useEffect } from 'react'
+import { Box, Grid, Typography, CircularProgress } from '@mui/material'
+import { useSession } from 'next-auth/react'
+import SongCard from './SongCard'
+import { getRecommendations } from '../lib/spotify'
 
-// TODO: Replace with actual API call
-const mockSongs = [
-    { id: 1, title: 'Happy Song', artist: 'Happy Artist' },
-    { id: 2, title: 'Sad Song', artist: 'Sad Artist' },
-    { id: 3, title: 'Energetic Song', artist: 'Energetic Artist' },
-    { id: 4, title: 'Relaxing Song', artist: 'Relaxing Artist' },
-]
+interface SongRecommendationsProps {
+  mood: string
+}
 
-export default function SongRecommendations() {
-    const [songs] = useState(mockSongs)
+export default function SongRecommendations({ mood }: SongRecommendationsProps) {
+  const [songs, setSongs] = useState([])
+  const [loading, setLoading] = useState(false)
+  const { data: session } = useSession()
 
-    // TODO: Implement useEffect to fetch songs based on selected mood
+  useEffect(() => {
+    const fetchRecommendations = async () => {
+      if (session?.accessToken && mood) {
+        setLoading(true)
+        try {
+          const recommendations = await getRecommendations(session.accessToken, mood)
+          setSongs(recommendations)
+        } catch (error) {
+          console.error('Error fetching recommendations:', error)
+        } finally {
+          setLoading(false)
+        }
+      }
+    }
 
-    return (
-        <Box sx={{ my: 4 }}>
-            <Typography variant="h5" component="h2" gutterBottom>
-                Recommended Songs:
-            </Typography>
-            <List>
-                {songs.map((song) => (
-                    <ListItem key={song.id}>
-                        <ListItemText primary={song.title} secondary={song.artist} />
-                    </ListItem>
-                ))}
-            </List>
-        </Box>
-    )
+    fetchRecommendations()
+  }, [mood, session])
+
+  if (loading) {
+    return <CircularProgress />
+  }
+
+  return (
+    <Box sx={{ my: 4 }}>
+      <Typography variant="h5" component="h2" gutterBottom sx={{ color: 'text.primary' }}>
+        Recommended Songs for {mood || 'Your Mood'}
+      </Typography>
+      <Grid container spacing={3}>
+        {songs.map((song) => (
+          <Grid item key={song.id} xs={12} sm={6} md={4}>
+            <SongCard song={song} />
+          </Grid>
+        ))}
+      </Grid>
+    </Box>
+  )
 }
 
