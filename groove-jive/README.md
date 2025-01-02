@@ -19,64 +19,8 @@ This is a Next.js web application that provides song recommendations based on th
 
 ### Installation
 
-1. Clone the repository:
+Clone the repository
 
-
-The entire file structure of the project.
-
-```plaintext
-mood-based-song-recommendation/
-├── .env.local
-├── .gitignore
-├── next.config.js
-├── package.json
-├── tsconfig.json
-├── app/
-│   ├── layout.tsx
-│   ├── page.tsx
-│   ├── providers.tsx
-│   ├── home/
-│   │   └── page.tsx
-│   └── login/
-│       └── page.tsx
-├── components/
-│   ├── ErrorBoundary.tsx
-│   ├── HomePage.tsx
-│   ├── LandingPage.tsx
-│   ├── Library.tsx
-│   ├── LoginForm.tsx
-│   ├── MoodSelector.tsx
-│   ├── Player.tsx
-│   ├── RecentlyPlayed.tsx
-│   ├── SearchBar.tsx
-│   ├── Seo.tsx
-│   ├── Sidebar.tsx
-│   ├── SongCard.tsx
-│   └── SongRecommendations.tsx
-├── contexts/
-│   └── AppContext.tsx
-├── lib/
-│   ├── analytics.ts
-│   ├── db.ts
-│   ├── mongodb.ts
-│   └── spotify.ts
-├── pages/
-│   └── api/
-│       ├── auth/
-│       │   └── [...nextauth].ts
-│       ├── recommendations.ts
-│       └── user/
-│           └── preferences.ts
-├── public/
-│   ├── favicon.ico
-│   ├── icon-192x192.png
-│   ├── icon-512x512.png
-│   └── manifest.json
-├── styles/
-│   └── theme.ts
-└── __tests__/
-    └── MoodSelector.test.tsx
-```
 
 This structure includes all the main files and folders we've discussed. Here's a brief explanation of each:
 
