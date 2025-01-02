@@ -22,7 +22,7 @@ This is a Next.js web application that provides song recommendations based on th
 Clone the repository
 
 
-This structure includes all the main files and folders we've discussed. Here's a brief explanation of each:
+This structure includes all the main files and folders. Here's a brief explanation of each:
 
 1. Root directory files:
 
