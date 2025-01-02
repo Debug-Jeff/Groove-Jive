@@ -1,5 +1,4 @@
 # Groove-Jive
-Just grooving and jiving :)
 
 # Mood-Based Song Recommendation Web App
 
