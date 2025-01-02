@@ -22,9 +22,7 @@ This is a Next.js web application that provides song recommendations based on th
 1. Clone the repository:
 
 
-I'll provide you with the entire file structure of how your project should look if you've set it up locally based on the changes we've made.
-
-Here's how your file structure should look:
+The entire file structure of the project.
 
 ```plaintext
 mood-based-song-recommendation/
